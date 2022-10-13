@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 11 okt 2022 om 12:40
+-- Gegenereerd op: 13 okt 2022 om 12:21
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -34,6 +34,15 @@ CREATE TABLE `category` (
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `image`, `description`) VALUES
+(1, 'Vlees pizza', '/img/pizza-met-vlees-39154445.jpg', 'alle vlees pizza\'s zie je hier  '),
+(2, 'Vegetarische pizza', '/img/vegan-pizza.jpg', 'alle vegetarische pizza\'s zie je hier '),
+(3, 'vis pizza', '/img/images.jpg', 'alle vispizza\'s zie je hier ');
+
 -- --------------------------------------------------------
 
 --
@@ -51,7 +60,8 @@ CREATE TABLE `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20221011103843', '2022-10-11 12:39:05', 98);
+('DoctrineMigrations\\Version20221011103843', '2022-10-11 12:39:05', 98),
+('DoctrineMigrations\\Version20221013073802', '2022-10-13 09:38:30', 57);
 
 -- --------------------------------------------------------
 
@@ -67,6 +77,20 @@ CREATE TABLE `messenger_messages` (
   `created_at` datetime NOT NULL,
   `available_at` datetime NOT NULL,
   `delivered_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` double NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -95,6 +119,12 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
 
 --
+-- Indexen voor tabel `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -102,13 +132,19 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT voor een tabel `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT voor een tabel `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
