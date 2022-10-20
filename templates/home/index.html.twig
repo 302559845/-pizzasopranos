@@ -11,14 +11,12 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ category.name }}</h5>
                     <p class="card-text">{{ category.description }}</p>
-                    <a href="#" class="btn btn-primary"> next page</a>
+                    <a href="{{ path("app_category", {id: category.id}) }}" class="btn btn-primary"> next page</a>
                 </div>
             </div>
             {% endfor %}
         </div>
         <br>
-        <div class="footer">
-            <footer>@ website van Emmanuel Owusu</footer>
-        </div>
+
     </div>
 {% endblock %}
