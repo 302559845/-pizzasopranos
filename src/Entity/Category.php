@@ -27,9 +27,16 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
     private Collection $products;
 
+    #[ORM\Column(length: 255)]
+    private ?string $relation = null;
+
+    #[ORM\OneToMany(mappedBy: 'category_id', targetEntity: products::class, orphanRemoval: true)]
+    private Collection $product;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,5 +108,25 @@ class Category
         }
 
         return $this;
+    }
+
+    public function getRelation(): ?string
+    {
+        return $this->relation;
+    }
+
+    public function setRelation(string $relation): self
+    {
+        $this->relation = $relation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, products>
+     */
+    public function getProduct(): Collection
+    {
+        return $this->product;
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 17 okt 2022 om 12:21
+-- Gegenereerd op: 07 nov 2022 om 09:50
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pizzasopranos`
+-- Database: `sopranos`
 --
 
 -- --------------------------------------------------------
@@ -83,20 +83,6 @@ CREATE TABLE `messenger_messages` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `product`
---
-
-CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` double NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Tabelstructuur voor tabel `products`
 --
 
@@ -106,6 +92,14 @@ CREATE TABLE `products` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `image`, `price`) VALUES
+(1, 'BBQ MEATLOVERS PIZZA', '/img/bbqpizza.jpg', 16.5),
+(2, 'Double Pepperoni pizza', '/img/pepperonipizza.jpg', 16.5);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -133,12 +127,6 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
 
 --
--- Indexen voor tabel `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexen voor tabel `products`
 --
 ALTER TABLE `products`
@@ -161,16 +149,20 @@ ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT voor een tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Beperkingen voor geëxporteerde tabellen
+--
+
+--
+-- Beperkingen voor tabel `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id`) REFERENCES `category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
