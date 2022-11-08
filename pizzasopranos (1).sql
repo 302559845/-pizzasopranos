@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 07 nov 2022 om 09:50
+-- Gegenereerd op: 08 nov 2022 om 12:57
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sopranos`
+-- Database: `pizzasopranos`
 --
 
 -- --------------------------------------------------------
@@ -39,9 +39,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`, `description`) VALUES
-(1, 'Vlees pizza', '/img/vleespizza.jpg', 'alle vlees pizza\'s zie je hier  '),
-(2, 'Vegetarische pizza', '/img/forevergreen.jpg', 'alle vegetarische pizza\'s zie je hier '),
-(3, 'vis pizza', '/img/vispizza.jpg', 'alle vispizza\'s zie je hier ');
+(1, 'Vlees pizza\'s', '/img/vleespizza.jpg', 'Hier staan alle vlees pizza\'s'),
+(2, 'Vis Pizza\'s', '/img/vispizza.jpg', 'Hier staan alle vis pizza\'s'),
+(3, 'Vegetarische pizza\'s', '/img/forevergreen.jpg', 'hier staan alle Vegetarische pizza\'s ');
 
 -- --------------------------------------------------------
 
@@ -60,9 +60,7 @@ CREATE TABLE `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20221011103843', '2022-10-11 12:39:05', 98),
-('DoctrineMigrations\\Version20221013073802', '2022-10-13 09:38:30', 57),
-('DoctrineMigrations\\Version20221017100529', '2022-10-17 12:07:02', 69);
+('DoctrineMigrations\\Version20221108085849', '2022-11-08 09:58:57', 286);
 
 -- --------------------------------------------------------
 
@@ -88,6 +86,7 @@ CREATE TABLE `messenger_messages` (
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double NOT NULL
@@ -97,9 +96,36 @@ CREATE TABLE `products` (
 -- Gegevens worden geëxporteerd voor tabel `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `image`, `price`) VALUES
-(1, 'BBQ MEATLOVERS PIZZA', '/img/bbqpizza.jpg', 16.5),
-(2, 'Double Pepperoni pizza', '/img/pepperonipizza.jpg', 16.5);
+INSERT INTO `products` (`id`, `category_id`, `name`, `image`, `price`) VALUES
+(1, 1, 'Peperonni Pizzza', '/img/pepperonipizza.jpg', 16.75),
+(2, 1, 'Barbeque Pizza ', '/img/bbqpizza.jpg ', 16.65),
+(3, 1, 'Salami pizza', '/img/salami-7743.jpg', 16.5),
+(4, 2, ' Tonijn Pizza', '/img/pizzatonijn.jpg', 16.55),
+(5, 2, 'Aro Pizza', '/img/pizza Aro 800x800.png', 16.86),
+(6, 2, 'Meditteranean Pizza', '/img/Meditteranean.jpg', 17.2),
+(7, 3, 'Rossa Vegatable Pizza', '/img/AHI_43545239383439323936.jpg', 16.55),
+(8, 3, 'Pesto Pizza ', '/img/15735_2363_image-xl_20201126130545.jpg', 16.5),
+(9, 3, 'Vegan Supreme Pizza', '/img/5257288.png', 16.75);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
+(1, 'emmm@gmail.com', '[]', '$2y$13$pCilI6D/hfeposjIG1w73eTAlEJpgu6G3VMgigL3ZEEDL2b9.9zUa');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -130,7 +156,15 @@ ALTER TABLE `messenger_messages`
 -- Indexen voor tabel `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_B3BA5A5A12469DE2` (`category_id`);
+
+--
+-- Indexen voor tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -152,7 +186,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT voor een tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
@@ -162,7 +202,7 @@ ALTER TABLE `products`
 -- Beperkingen voor tabel `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id`) REFERENCES `category` (`id`);
+  ADD CONSTRAINT `FK_B3BA5A5A12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
