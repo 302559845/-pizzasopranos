@@ -27,9 +27,6 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
     private Collection $products;
 
-    #[ORM\Column(length: 255)]
-    private ?string $relation = null;
-
     #[ORM\OneToMany(mappedBy: 'category_id', targetEntity: products::class, orphanRemoval: true)]
     private Collection $product;
 

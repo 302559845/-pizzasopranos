@@ -10,12 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     #[Route('/category/{id}', name: 'app_category')]
-    public function index($id, ProductsRepository $productsRepository): Response
+    public function index(ProductsRepository $productsRepository, int $id): Response
     {
-//        $products = $productsRepository->findBy(array('category' => $id));
-        $products = $productsRepository->findAll();
-
-//        dd($products);
+        $products = $productsRepository->findBy(['category' => $id]);
         return $this->render('category/index.html.twig', [
             'products' => $products,
         ]);

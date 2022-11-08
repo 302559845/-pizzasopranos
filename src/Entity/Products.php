@@ -25,10 +25,6 @@ class Products
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
-    #[ORM\ManyToOne(inversedBy: 'product')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category_id = null;
-
     public function getId(): ?int
     {
         return $this->id;
