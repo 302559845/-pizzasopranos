@@ -5,16 +5,9 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            {% for category in categories %}
-                <div class="card"style="width: 18rem; margin: 35px auto">
-                    <img src="{{ category.image }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ category.name }}</h5>
-                        <p class="card-text">{{ category.description }}</p>
-                        <a href="{{ path("app_category", {id: category.id}) }}" class="btn btn-primary"> next page</a>
-                    </div>
-                </div>
-            {% endfor %}
+{#            {% for category in categories %}#}
+
+{#            {% endfor %}#}
         </div>
         <br>
 
