@@ -11,11 +11,23 @@
                     <img src="{{ products.image }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ products.name }}</h5>
+                        <h5 class="card-title">{{ products.price }}</h5>
                     </div>
                 </div>
         </div>
         <div class="col">
-
+            <form>
+                <div class="form-group col-md-4">
+                    <label for="inputState">pizza size</label>
+                    <select id="inputState" class="form-control">
+                        <option selected> click here to choose</option>
+                        <option >Medium(25cm)</option>
+                        <option> Large(35cm)</option>
+                        <option> Calzone</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">bestellen</button>
+            </form>
         </div>
     </div>
 

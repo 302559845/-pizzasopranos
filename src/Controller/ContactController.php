@@ -15,4 +15,12 @@ class ContactController extends AbstractController
             'controller_name' => 'ContactContollerController',
         ]);
     }
+//    public function new(EntityManagerInterface $em)
+//    {
+//        $form = $this->createForm(ArticleFormType::class);
+//        return $this->render('contact_contoller/index.html.twig', [
+//            'articleForm' => $form->createView()
+//        ]);
+//    }
 }
+
