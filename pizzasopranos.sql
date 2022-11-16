@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 08 nov 2022 om 10:29
+-- Gegenereerd op: 16 nov 2022 om 14:52
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -97,8 +97,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `image`, `price`) VALUES
-(1, 1, 'Peperonni Pizzza', '/img/', 16.75),
-(2, 1, 'Barbeque Pizza ', '/img/ ', 16.65);
+(1, 1, 'Peperonni Pizzza', '/img/pepperonipizza.jpg', 16.75),
+(2, 1, 'Barbeque Pizza ', '/img/bbqpizza.jpg ', 16.65),
+(3, 1, 'Salami pizza', '/img/salami-7743.jpg', 16.5),
+(4, 2, ' Tonijn Pizza', '/img/pizzatonijn.jpg', 16.55),
+(5, 2, 'Aro Pizza', '/img/pizza Aro 800x800.png', 16.86),
+(6, 2, 'Meditteranean Pizza', '/img/Meditteranean.jpg', 17.2),
+(7, 3, 'Rossa Vegatable Pizza', '/img/AHI_43545239383439323936.jpg', 16.55),
+(8, 3, 'Pesto Pizza ', '/img/15735_2363_image-xl_20201126130545.jpg', 16.5),
+(9, 3, 'Vegan Supreme Pizza', '/img/5257288.png', 16.75);
 
 -- --------------------------------------------------------
 
@@ -118,7 +125,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
-(1, 'emmm@gmail.com', '[]', '$2y$13$pCilI6D/hfeposjIG1w73eTAlEJpgu6G3VMgigL3ZEEDL2b9.9zUa');
+(1, 'emmm@gmail.com', '[\"ROLE_USER\",\"ROLE_ADMIN\"]', '$2y$13$pCilI6D/hfeposjIG1w73eTAlEJpgu6G3VMgigL3ZEEDL2b9.9zUa'),
+(2, 'em567@gmail.com', '[\"ROLE_USER\"]', '$2y$13$0/IBVYw7vB2ed4XL6ScVC.kOFNRB0UmJugf7DZGC7sK8yWtfpzR8q');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -179,13 +187,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
