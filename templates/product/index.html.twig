@@ -11,7 +11,7 @@
                     <img src="{{ products.image }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ products.name }}</h5>
-                        <h5 class="card-title">{{ products.price }}</h5>
+                        <h5 class="card-title"> €{{ products.price }}</h5>
                     </div>
                 </div>
         </div>
@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary">bestellen</button>
+                <a href="{{ path("app_data") }}" class="btn btn-primary"> bestellen</a>
             </form>
         </div>
     </div>
