@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 class productFormType extends AbstractType
@@ -13,7 +15,8 @@ class productFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Fullname', TextType::class)
+            ->add('name', TextType::class)
+            ->add('adress',TextType::class)
         ;
         $builder->add('Amount', ChoiceType::class, [
             'choices' => [
@@ -27,10 +30,17 @@ class productFormType extends AbstractType
         ]);
         $builder->add('pizza_size', ChoiceType::class, [
             'choices' => [
-                'meduim pizza(25 cm)' => 1,
-                'large pizza(35 cm)' => 2,
-                'calzone' => 3,
+                'meduim pizza(25 cm)' => 'medium',
+                'large pizza(35 cm)' => 'large',
+                'calzone' => 'calzone',
             ],
+        ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' =>  Order::class,
         ]);
     }
 }

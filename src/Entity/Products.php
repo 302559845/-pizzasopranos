@@ -27,7 +27,7 @@ class Products
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'products', targetEntity: order::class)]
+    #[ORM\OneToMany(mappedBy: 'products', targetEntity: Order::class)]
     private Collection $pizza_id;
 
     public function __construct()

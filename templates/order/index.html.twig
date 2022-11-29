@@ -4,9 +4,33 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
+        {% for order in orders %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Adress</th>
+                <th scope="col">status</th>
+                <th scope="col">product</th>
+                <th scope="col">price</th>
+                <th scope="col">amount</th>
+                <th scope="col">pizza size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> {{ order.name }} </td>
+                <td> {{ order.adress }}</td>
+                <td class="bg-danger"> {{ order.status }}</td>
+                <td> {{ order.products.name }}</td>
+                <td> {{ order.products.price }}</td>
+                <td> {{ order.amount }}</td>
+                <td> {{ order.pizzaSize }}</td>
+            </tr>
 
-        </div>
+            </tbody>
+        </table>
+            {% endfor %}
         <br>
 
     </div>
