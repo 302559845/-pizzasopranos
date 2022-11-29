@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
@@ -24,6 +26,14 @@ class Products
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
+
+    #[ORM\OneToMany(mappedBy: 'products', targetEntity: order::class)]
+    private Collection $pizza_id;
+
+    public function __construct()
+    {
+        $this->pizza_id = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +96,36 @@ class Products
     public function setCategoryId(?Category $category_id): self
     {
         $this->category_id = $category_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, order>
+     */
+    public function getPizzaId(): Collection
+    {
+        return $this->pizza_id;
+    }
+
+    public function addPizzaId(order $pizzaId): self
+    {
+        if (!$this->pizza_id->contains($pizzaId)) {
+            $this->pizza_id->add($pizzaId);
+            $pizzaId->setProducts($this);
+        }
+
+        return $this;
+    }
+
+    public function removePizzaId(order $pizzaId): self
+    {
+        if ($this->pizza_id->removeElement($pizzaId)) {
+            // set the owning side to null (unless already changed)
+            if ($pizzaId->getProducts() === $this) {
+                $pizzaId->setProducts(null);
+            }
+        }
 
         return $this;
     }

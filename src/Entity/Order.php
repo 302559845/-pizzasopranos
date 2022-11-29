@@ -17,6 +17,10 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne(inversedBy: 'pizza_id')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Products $products = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +34,18 @@ class Order
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getProducts(): ?Products
+    {
+        return $this->products;
+    }
+
+    public function setProducts(?Products $products): self
+    {
+        $this->products = $products;
 
         return $this;
     }
