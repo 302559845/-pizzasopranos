@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 29 nov 2022 om 10:24
+-- Gegenereerd op: 29 nov 2022 om 12:25
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -62,7 +62,8 @@ CREATE TABLE `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20221108085849', '2022-11-08 09:58:57', 286),
 ('DoctrineMigrations\\Version20221122085458', '2022-11-22 09:55:17', 62),
-('DoctrineMigrations\\Version20221129092057', '2022-11-29 10:21:06', 170);
+('DoctrineMigrations\\Version20221129092057', '2022-11-29 10:21:06', 170),
+('DoctrineMigrations\\Version20221129103938', '2022-11-29 11:39:53', 191);
 
 -- --------------------------------------------------------
 
@@ -89,8 +90,19 @@ CREATE TABLE `messenger_messages` (
 CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `products_id` int(11) NOT NULL
+  `products_id` int(11) NOT NULL,
+  `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` int(11) NOT NULL,
+  `pizza_size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `order`
+--
+
+INSERT INTO `order` (`id`, `name`, `products_id`, `adress`, `status`, `amount`, `pizza_size`) VALUES
+(4, 'Emmanuel', 1, 'delangeeplein 76', 'To-Do', 1, 'medium');
 
 -- --------------------------------------------------------
 
@@ -111,7 +123,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `image`, `price`) VALUES
-(1, 1, 'Peperonni Pizzza', '/img/pepperonipizza.jpg', 16.75),
+(1, 1, 'Peperonni Pizza', '/img/pepperonipizza.jpg', 16.75),
 (2, 1, 'Barbeque Pizza ', '/img/bbqpizza.jpg ', 16.65),
 (3, 1, 'Salami pizza', '/img/salami-7743.jpg', 16.54),
 (4, 2, ' Tonijn Pizza', '/img/pizzatonijn.jpg', 16.55),
@@ -173,7 +185,7 @@ ALTER TABLE `messenger_messages`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_F52993986C8A81A9` (`products_id`);
+  ADD KEY `IDX_34E8BC9C6C8A81A9` (`products_id`);
 
 --
 -- Indexen voor tabel `products`
@@ -209,7 +221,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `products`
