@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 23 nov 2022 om 15:26
+-- Gegenereerd op: 29 nov 2022 om 10:24
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -61,7 +61,8 @@ CREATE TABLE `doctrine_migration_versions` (
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20221108085849', '2022-11-08 09:58:57', 286),
-('DoctrineMigrations\\Version20221122085458', '2022-11-22 09:55:17', 62);
+('DoctrineMigrations\\Version20221122085458', '2022-11-22 09:55:17', 62),
+('DoctrineMigrations\\Version20221129092057', '2022-11-29 10:21:06', 170);
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `messenger_messages` (
 
 CREATE TABLE `order` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -170,7 +172,8 @@ ALTER TABLE `messenger_messages`
 -- Indexen voor tabel `order`
 --
 ALTER TABLE `order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_F52993986C8A81A9` (`products_id`);
 
 --
 -- Indexen voor tabel `products`
@@ -223,6 +226,12 @@ ALTER TABLE `user`
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
+
+--
+-- Beperkingen voor tabel `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `FK_F52993986C8A81A9` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`);
 
 --
 -- Beperkingen voor tabel `products`
