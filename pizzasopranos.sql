@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 29 nov 2022 om 12:25
+-- Gegenereerd op: 30 nov 2022 om 15:21
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -102,7 +102,15 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `name`, `products_id`, `adress`, `status`, `amount`, `pizza_size`) VALUES
-(4, 'Emmanuel', 1, 'delangeeplein 76', 'To-Do', 1, 'medium');
+(4, 'Emmanuel', 1, 'delangeeplein 76', 'To-Do', 1, 'medium'),
+(5, 'Figo', 4, 'de larey weg 15A', 'To-Do', 3, 'medium'),
+(6, 'Figo', 4, 'de larey weg 15A', 'To-Do', 3, 'medium'),
+(7, 'Figo', 4, 'de larey weg 15A', 'To-Do', 3, 'medium'),
+(8, 'Figo', 4, 'de larey weg 15A', 'To-Do', 3, 'medium'),
+(9, 'Figo', 4, 'de larey weg 15A', 'To-Do', 3, 'medium'),
+(10, 'Figurson', 3, 'de laan van noi 705', 'To-Do', 1, 'medium'),
+(11, 'figii', 5, 'haagweg 123', 'To-Do', 1, 'medium'),
+(12, 'delin', 5, 'chesinstraat 64', 'To-Do', 2, 'medium');
 
 -- --------------------------------------------------------
 
@@ -153,7 +161,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
 (1, 'emmm@gmail.com', '[\"ROLE_USER\"]', '$2y$13$pCilI6D/hfeposjIG1w73eTAlEJpgu6G3VMgigL3ZEEDL2b9.9zUa'),
 (2, 'em567@gmail.com', '[\"ROLE_USER\"]', '$2y$13$0/IBVYw7vB2ed4XL6ScVC.kOFNRB0UmJugf7DZGC7sK8yWtfpzR8q'),
-(3, 'theden@gmail.com', '[\"ROLE_USER\",\"ROLE_ADMIN\"]', '$2y$13$zmKwXFsaJsNn9XfXNmbgPeIuiDy5BGUN.m9TkvxmAHk7nXyARTvtO');
+(3, 'theden@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$zmKwXFsaJsNn9XfXNmbgPeIuiDy5BGUN.m9TkvxmAHk7nXyARTvtO'),
+(4, 'emms23@gmail.com', '[\"ROLE_USER\"]', '$2y$13$/izHMfr6P8IWHWzHGH2qU.PcgAn9ik6pRlCnFLifhM6uR8TeCjmMW');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -221,7 +230,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `products`
@@ -233,7 +242,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
