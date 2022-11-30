@@ -43,10 +43,7 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_user') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_home') }}">categorie</a>
+                    <a class="nav-link" href="{{ path('app_home') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_order') }}">orders</a>
@@ -59,6 +56,9 @@
                 </li>
             </ul>
             <ul class="ms-auto">
+                <li>
+                    <a class="nav-link" href="{{ path('app_logout') }}">logout</a>
+                </li>
                 <li>
                     <a class="nav-link" href="{{ path('app_login') }}">inlog</a>
                 </li>
