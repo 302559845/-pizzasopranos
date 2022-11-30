@@ -3,8 +3,12 @@
 {% block title %}Hello OrderController!{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('succes') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="container">
-        {% for order in orders %}
         <table class="table">
             <thead>
             <tr>
@@ -18,6 +22,9 @@
             </tr>
             </thead>
             <tbody>
+            {% for order in orders %}
+
+
             <tr>
                 <td> {{ order.name }} </td>
                 <td> {{ order.adress }}</td>
@@ -28,10 +35,10 @@
                 <td> {{ order.pizzaSize }}</td>
             </tr>
 
+            {% endfor %}
+
             </tbody>
         </table>
-            {% endfor %}
         <br>
-
     </div>
 {% endblock %}

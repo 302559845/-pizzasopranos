@@ -56,12 +56,15 @@
                 </li>
             </ul>
             <ul class="ms-auto">
+                {% if app.user%}
                 <li>
                     <a class="nav-link" href="{{ path('app_logout') }}">logout</a>
                 </li>
+                {% else %}
                 <li>
                     <a class="nav-link" href="{{ path('app_login') }}">inlog</a>
                 </li>
+                {% endif %}
             </ul>
 
         </div>

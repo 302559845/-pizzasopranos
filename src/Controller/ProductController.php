@@ -26,6 +26,8 @@ class ProductController extends AbstractController
             $order->setProducts($product);
             $em->persist($order);
             $em->flush();
+            $this->addFlash('succes', 'Bedankt voor je bestelling');
+            return $this->redirectToRoute("app_order");
         }
 
         return $this->renderform('product/index.html.twig', [

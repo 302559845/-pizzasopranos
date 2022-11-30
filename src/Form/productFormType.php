@@ -26,7 +26,6 @@ class productFormType extends AbstractType
                 '4' => 4,
                 '5' => 5,
             ],
-
         ]);
         $builder->add('pizza_size', ChoiceType::class, [
             'choices' => [
