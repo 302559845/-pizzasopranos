@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+  {% extends 'base.html.twig' %}
 
 {% block title %}Hello OrderController!{% endblock %}
 
@@ -14,29 +14,52 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Adress</th>
-                <th scope="col">status</th>
                 <th scope="col">product</th>
                 <th scope="col">price</th>
                 <th scope="col">amount</th>
                 <th scope="col">pizza size</th>
+                <th scope="col">status</th>
             </tr>
             </thead>
             <tbody>
+            {% if is_granted ('ROLE_ADMIN')%}
+                {% for order in orders %}
+                    <tr>
+                        <td> {{ order.name }} </td>
+                        <td> {{ order.adress }}</td>
+                        <td> {{ order.products.name }}</td>
+                        <td> {{ order.products.price }}</td>
+                        <td> {{ order.amount }}</td>
+                        <td> {{ order.pizzaSize }}</td>
+                        <td> {% if order.status == 'To-Do' %}
+                            <a href="{{ path('status_change', {id: order.id}) }}"
+                               class="btn btn-danger">{{ order.status }}</a>
+                            {% elseif order.status == 'In progress' %}
+                            <a href="{{ path('status_change', {id: order.id}) }}"
+                               class="btn btn-warning">{{ order.status }}</a>
+                            {% else order.status == 'To-Do' %}
+                            <a href="{{ path('status_change', {id: order.id}) }}"
+                               class="btn btn-danger">{{ order.status }}</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+            {% else %}
             {% for order in orders %}
 
 
             <tr>
                 <td> {{ order.name }} </td>
                 <td> {{ order.adress }}</td>
-                <td class="bg-danger"> {{ order.status }}</td>
                 <td> {{ order.products.name }}</td>
                 <td> {{ order.products.price }}</td>
                 <td> {{ order.amount }}</td>
                 <td> {{ order.pizzaSize }}</td>
+                <td class="bg-danger"> {{ order.status }}</td>
             </tr>
 
             {% endfor %}
-
+            {% endif %}
             </tbody>
         </table>
         <br>

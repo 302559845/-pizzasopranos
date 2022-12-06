@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Repository\OrderRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 class OrderController extends AbstractController
 {
@@ -18,4 +20,19 @@ class OrderController extends AbstractController
             'orders' => $orders,
         ]);
     }
+    #[Route('/status{id}', name: 'status_change')]
+    public function status($id, OrderRepository $orderRepository, EntityManagerInterface $entityManager){
+        $order = $orderRepository->find($id);
+        if ($order->getStatus() == 'To-Do'){
+            $order->setStatus('In progress');
+        }   elseif ($order->getStatus() == 'In progress') {
+            $order->setStatus('Done');
+        }else{
+            $order->setStatus('Done');
+        }
+
+        $entityManager->persist($order);
+        $entityManager->flush();
+    }
+
 }
