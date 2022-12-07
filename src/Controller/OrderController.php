@@ -26,9 +26,9 @@ class OrderController extends AbstractController
         if ($order->getStatus() == 'To-Do'){
             $order->setStatus('In progress');
         }   elseif ($order->getStatus() == 'In progress') {
-            $order->setStatus('Done');
+            $order->setStatus('DONE');
         }else{
-            $order->setStatus('Done');
+            $order->setStatus('DONE');
         }
 
         $entityManager->persist($order);
