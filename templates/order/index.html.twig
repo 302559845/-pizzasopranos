@@ -37,10 +37,11 @@
                             {% elseif order.status == 'In progress' %}
                             <a href="{{ path('status_change', {id: order.id}) }}"
                                class="btn btn-warning">{{ order.status }}</a>
-                            {% else order.status == 'To-Do' %}
+                            {% else  %}
                             <a href="{{ path('status_change', {id: order.id}) }}"
                                class="btn btn-danger">{{ order.status }}</a>
                         </td>
+                                {% endif %}
                     </tr>
 
                 {% endfor %}
