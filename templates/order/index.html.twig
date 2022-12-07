@@ -39,7 +39,7 @@
                                class="btn btn-warning">{{ order.status }}</a>
                             {% else  %}
                             <a href="{{ path('status_change', {id: order.id}) }}"
-                               class="btn btn-danger">{{ order.status }}</a>
+                               class="btn btn-success">{{ order.status }}</a>
                         </td>
                                 {% endif %}
                     </tr>
