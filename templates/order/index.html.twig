@@ -8,21 +8,21 @@
             {{ message }}
         </div>
     {% endfor %}
-    <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Adress</th>
-                <th scope="col">product</th>
-                <th scope="col">price</th>
-                <th scope="col">amount</th>
-                <th scope="col">pizza size</th>
-                <th scope="col">status</th>
-            </tr>
-            </thead>
-            <tbody>
             {% if is_granted ('ROLE_ADMIN')%}
+                <div class="container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Adress</th>
+                        <th scope="col">product</th>
+                        <th scope="col">price</th>
+                        <th scope="col">amount</th>
+                        <th scope="col">pizza size</th>
+                        <th scope="col">status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                 {% for order in orders %}
                     <tr>
                         <td> {{ order.name }} </td>
@@ -45,24 +45,13 @@
                     </tr>
 
                 {% endfor %}
+                </tbody>
+
+                </table>
+                <br>
+                </div>
             {% else %}
-            {% for order in orders %}
-
-
-            <tr>
-                <td> {{ order.name }} </td>
-                <td> {{ order.adress }}</td>
-                <td> {{ order.products.name }}</td>
-                <td> {{ order.products.price }}</td>
-                <td> {{ order.amount }}</td>
-                <td> {{ order.pizzaSize }}</td>
-                <td class="bg-danger"> {{ order.status }}</td>
-            </tr>
-
-            {% endfor %}
+                <h2>Bedankt voor de bestelling!!!</h2>
             {% endif %}
-            </tbody>
-        </table>
-        <br>
-    </div>
+
 {% endblock %}
